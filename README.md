@@ -526,6 +526,18 @@ Product.search_reflection(:search).default_attributes
 # ...
 ```
 
+## Search Sanitization
+
+If you use simple string search for your scope and you like to pass in your unsafe params strings then you can use the following option to santize your search text automatically.
+
+```ruby
+search_scope :search do
+  attributes :title, :description
+
+  sanitize like: true
+end
+```
+
 ## Semantic Versioning
 
 Starting with version 1.0.0, SearchCop uses Semantic Versioning:
@@ -538,4 +550,3 @@ Starting with version 1.0.0, SearchCop uses Semantic Versioning:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-

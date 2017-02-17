@@ -32,4 +32,3 @@ module SearchCop
     end
   end
 end
-

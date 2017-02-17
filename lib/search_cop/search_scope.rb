@@ -1,12 +1,13 @@
 
 module SearchCop
   class Reflection
-    attr_accessor :attributes, :options, :aliases, :scope
+    attr_accessor :attributes, :options, :aliases, :scope, :sanitize
 
     def initialize
       self.attributes = {}
       self.options = {}
       self.aliases = {}
+      self.sanitize = {}
     end
 
     def default_attributes
@@ -46,6 +47,12 @@ module SearchCop
       reflection.scope = block
     end
 
+    def sanitize(hash)
+      hash.each do |key, value|
+        reflection.sanitize[key.to_s] = value.is_a?(Class) ? value : value.to_s
+      end
+    end
+
     private
 
     def attributes_hash(hash)
@@ -59,4 +66,3 @@ module SearchCop
     end
   end
 end
-
